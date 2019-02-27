@@ -104,18 +104,25 @@ int main(void)
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);
 
-    Paint_DrawString_EN(0, 20, "hello world", &Font24, WHITE, BLACK);
+    Paint_DrawString_EN(20, 20, "hello world", &Font24, WHITE, BLACK);
 
     time_t t = time(NULL);
     struct tm tm = *localtime(&t);
     printf("now: %d:%d:%d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+
+    char buf[80] = {0};
+    sprintf(buf, "now: %d:%d\n", tm.tm_hour, tm.tm_min);
+    // void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char *pString, sFONT *Font, UWORD Color_Background, UWORD Color_Foreground);
+    Paint_DrawString_EN(20, 60, buf, &Font24, WHITE, BLACK);
+
     PAINT_TIME pt;
     pt.Hour = tm.tm_hour;
     pt.Min  = tm.tm_min;
     pt.Sec  = tm.tm_sec;
 
+
     //    void Paint_DrawTime(UWORD Xstart, UWORD Ystart, PAINT_TIME * pTime, sFONT * Font, UWORD Color_Background, UWORD Color_Foreground);
-    Paint_DrawTime(0, 100, &pt, &Font24, WHITE, BLACK);
+    Paint_DrawTime(20, 100, &pt, &Font24, WHITE, BLACK);
 
     printf("EPD_Display\r\n");
     EPD_Display(BlackImage);
