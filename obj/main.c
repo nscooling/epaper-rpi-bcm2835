@@ -106,6 +106,17 @@ int main(void)
 
     Paint_DrawString_EN(0, 20, "hello world", &Font24, WHITE, BLACK);
 
+    time_t t = time(NULL);
+    struct tm tm = *localtime(&t);
+    printf("now: %d:%d:%d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
+    PAINT_TIME pt;
+    pt.Hour = tm.tm_hour;
+    pt.Min  = tm.tm_min;
+    pt.Sec  = tm.tm_sec;
+
+    //    void Paint_DrawTime(UWORD Xstart, UWORD Ystart, PAINT_TIME * pTime, sFONT * Font, UWORD Color_Background, UWORD Color_Foreground);
+    Paint_DrawTime(0, 100, &pt, &Font24, WHITE, BLACK);
+
     printf("EPD_Display\r\n");
     EPD_Display(BlackImage);
     DEV_Delay_ms(2000);
