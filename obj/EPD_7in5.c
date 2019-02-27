@@ -99,7 +99,7 @@ parameter:
 static void EPD_TurnOnDisplay(void)
 {
     EPD_SendCommand(DISPLAY_REFRESH);
-    //DEV_Delay_ms(100);
+    DEV_Delay_ms(100);
     EPD_WaitUntilIdle();
 }
 
@@ -142,11 +142,11 @@ UBYTE EPD_Init(void)
     EPD_SendCommand(VCOM_AND_DATA_INTERVAL_SETTING);
     EPD_SendData(0x77);
     
-    //EPD_SendCommand(TEMPERATURE_CALIBRATION);
-    //EPD_SendData(0x00);
+    EPD_SendCommand(TEMPERATURE_CALIBRATION);
+    EPD_SendData(0x00);
 
-   // EPD_SendCommand(TCON_SETTING);
-    // EPD_SendData(0x22);
+    EPD_SendCommand(TCON_SETTING);
+    EPD_SendData(0x22);
 
     EPD_SendCommand(0xe5);           //FLASH MODE
     EPD_SendData(0x03);
@@ -217,7 +217,7 @@ parameter:
 void EPD_Sleep(void)
 {
     EPD_SendCommand(POWER_OFF);
-    //EPD_WaitUntilIdle();
+    EPD_WaitUntilIdle();
     EPD_SendCommand(DEEP_SLEEP);
     EPD_SendData(0XA5);;
 }

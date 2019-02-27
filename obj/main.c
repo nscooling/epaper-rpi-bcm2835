@@ -111,7 +111,7 @@ int main(void)
     printf("now: %d:%d:%d\n", tm.tm_hour, tm.tm_min, tm.tm_sec);
 
     char buf[80] = {0};
-    sprintf(buf, "now: %d:%d\n", tm.tm_hour, tm.tm_min);
+    sprintf(buf, "now: %d:%d", tm.tm_hour, tm.tm_min);
     // void Paint_DrawString_EN(UWORD Xstart, UWORD Ystart, const char *pString, sFONT *Font, UWORD Color_Background, UWORD Color_Foreground);
     Paint_DrawString_EN(20, 60, buf, &Font24, WHITE, BLACK);
 
