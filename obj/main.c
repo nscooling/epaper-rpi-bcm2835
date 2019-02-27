@@ -42,7 +42,7 @@ int main(void)
     Paint_NewImage(BlackImage, EPD_WIDTH, EPD_HEIGHT, 0, WHITE);
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);
-#if 1   // show bmp 
+#if 0   // show bmp 
     printf("show bmp for window\r\n");
     Paint_SelectImage(BlackImage);    
     Paint_Clear(WHITE);    
@@ -58,8 +58,7 @@ int main(void)
     DEV_Delay_ms(500);
    
 #endif
-
-#if 1   // show image for array   
+#if 0  // show image for array   
     printf("show image for array\r\n");
     Paint_SelectImage(BlackImage);
     Paint_Clear(WHITE);

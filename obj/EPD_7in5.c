@@ -99,7 +99,7 @@ parameter:
 static void EPD_TurnOnDisplay(void)
 {
     EPD_SendCommand(DISPLAY_REFRESH);
-    DEV_Delay_ms(100);
+    //DEV_Delay_ms(100);
     EPD_WaitUntilIdle();
 }
 
@@ -111,33 +111,24 @@ UBYTE EPD_Init(void)
 {
     EPD_Reset();
 
-     EPD_SendCommand(POWER_SETTING);
-    EPD_SendData(0x37);
-    EPD_SendData(0x00);
-
-    EPD_SendCommand(PANEL_SETTING);
-    EPD_SendData(0xCF);
-    EPD_SendData(0x08);
-
     EPD_SendCommand(BOOSTER_SOFT_START);
     EPD_SendData(0xc7);
     EPD_SendData(0xcc);
     EPD_SendData(0x28);
+    
+    EPD_SendCommand(POWER_SETTING);
+    EPD_SendData(0x37);
+    EPD_SendData(0x00);
 
     EPD_SendCommand(POWER_ON);
     EPD_WaitUntilIdle();
 
+    EPD_SendCommand(PANEL_SETTING);
+    EPD_SendData(0xCF);
+    EPD_SendData(0x08);
+    
     EPD_SendCommand(PLL_CONTROL);
     EPD_SendData(0x3c);
-
-    EPD_SendCommand(TEMPERATURE_CALIBRATION);
-    EPD_SendData(0x00);
-
-    EPD_SendCommand(VCOM_AND_DATA_INTERVAL_SETTING);
-    EPD_SendData(0x77);
-
-    EPD_SendCommand(TCON_SETTING);
-    EPD_SendData(0x22);
 
     EPD_SendCommand(TCON_RESOLUTION);
     EPD_SendData(EPD_WIDTH >> 8);     //source 640
@@ -147,6 +138,15 @@ UBYTE EPD_Init(void)
 
     EPD_SendCommand(VCM_DC_SETTING);
     EPD_SendData(0x1E);      //decide by LUT file
+    
+    EPD_SendCommand(VCOM_AND_DATA_INTERVAL_SETTING);
+    EPD_SendData(0x77);
+    
+    //EPD_SendCommand(TEMPERATURE_CALIBRATION);
+    //EPD_SendData(0x00);
+
+   // EPD_SendCommand(TCON_SETTING);
+    // EPD_SendData(0x22);
 
     EPD_SendCommand(0xe5);           //FLASH MODE
     EPD_SendData(0x03);
@@ -217,7 +217,7 @@ parameter:
 void EPD_Sleep(void)
 {
     EPD_SendCommand(POWER_OFF);
-    EPD_WaitUntilIdle();
+    //EPD_WaitUntilIdle();
     EPD_SendCommand(DEEP_SLEEP);
     EPD_SendData(0XA5);;
 }
